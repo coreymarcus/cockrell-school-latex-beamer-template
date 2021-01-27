@@ -106,7 +106,7 @@
 
 %Use biber for special bibliogrphay.  The next few lines are all custom hacks to
 %make nice footnote citation in beamer.
-\usepackage[hyperref=true,style=verbose,labeldate=true,minnames=2,maxnames=10,maxbibnames=99,backend=biber]{biblatex}
+\usepackage[hyperref=true,style=verbose,labeldate=true,minnames=2,maxnames=10,maxbibnames=99,backend=bibtex8]{biblatex}
 %Use utorange for hyperlinks
 \hypersetup{colorlinks=true, allcolors=utblack, linkcolor=utblack, urlcolor=utorange}
 
@@ -119,28 +119,28 @@
   \printtext[bibhyperlink]{%
     \printfield{labelyear}\printfield{extrayear}}}
 
-%Remove footnote marks
-\newcommand\footnotenonum[1]{%
-  \begingroup
-  \renewcommand\thefootnote{}\footnote{#1}%
-  \addtocounter{footnote}{-1}%
-  \endgroup
-}
-
-\makeatletter
-\renewrobustcmd{\blx@mkbibfootnote}[2]{%
-  \iftoggle{blx@footnote}
-    {\blx@warning{Nested notes}%
-     \addspace\mkbibparens{#2}}
-    {\unspace
-     \ifnum\blx@notetype=\tw@
-       \expandafter\@firstoftwo
-     \else
-       \expandafter\@secondoftwo
-     \fi
-       {\csuse{blx@theendnote#1}{\protecting{\blxmkbibnote{end}{#2}}}}
-       {\csuse{footnotenonum#1}{\protecting{\blxmkbibnote{foot}{#2}}}}}}
-\makeatother
+%%Remove footnote marks
+%\newcommand\footnotenonum[1]{%
+%  \begingroup
+%  \renewcommand\thefootnote{}\footnote{#1}%
+%  \addtocounter{footnote}{-1}%
+%  \endgroup
+%}
+%
+%\makeatletter
+%\renewrobustcmd{\blx@mkbibfootnote}[2]{%
+%  \iftoggle{blx@footnote}
+%    {\blx@warning{Nested notes}%
+%     \addspace\mkbibparens{#2}}
+%    {\unspace
+%     \ifnum\blx@notetype=\tw@
+%       \expandafter\@firstoftwo
+%     \else
+%       \expandafter\@secondoftwo
+%     \fi
+%       {\csuse{blx@theendnote#1}{\protecting{\blxmkbibnote{end}{#2}}}}
+%       {\csuse{footnotenonum#1}{\protecting{\blxmkbibnote{foot}{#2}}}}}}
+%\makeatother
 
 %For footnote citing
 \setbeamertemplate{footnote}{% 
